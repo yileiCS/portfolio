@@ -123,7 +123,7 @@ const projectsData = {
       details: {
         location: "London, UK",
         year: "2019",
-        team: "Team of 4, collaborated with Xingshuo LIU, Guannan REN, Yinuo ZHENG, Jordana FOURNILLIER"
+        team: "Team of 5, collaborated with Xingshuo LIU, Guannan REN, Yinuo ZHENG, Jordana FOURNILLIER"
       }
     },
     {
