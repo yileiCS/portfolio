@@ -350,20 +350,14 @@ function openProjectModal(project) {
   // Set image - use modalImage if available, otherwise use colorImage
   const imageToShow = project.modalImage || project.colorImage || project.image;
 
-  console.log('Modal: Setting image src to:', imageToShow);
-  
   // Reset image first
   modalImage.src = '';
   modalImage.style.display = 'none';
-  
+
   // Create a new image element to preload
   const preloadImg = new Image();
-  
-  preloadImg.onload = function() {
-    console.log('Modal: Image preloaded successfully');
-    console.log('Modal: Image naturalWidth:', this.naturalWidth);
-    console.log('Modal: Image naturalHeight:', this.naturalHeight);
-    
+
+  preloadImg.onload = function () {
     // Set the source and show the image
     modalImage.src = imageToShow;
     modalImage.alt = project.title;
@@ -371,40 +365,20 @@ function openProjectModal(project) {
     modalImage.style.opacity = '1';
     modalImage.style.visibility = 'visible';
   };
-  
-  preloadImg.onerror = function() {
-    console.log('Modal: Image failed to preload!');
-    console.log('Modal: Image src:', imageToShow);
-    
+
+  preloadImg.onerror = function () {
     // Fallback to regular loading
     modalImage.src = imageToShow;
     modalImage.alt = project.title;
     modalImage.style.display = 'block';
   };
-  
+
   // Start preloading
   preloadImg.src = imageToShow;
 
   // Show modal
   modal.style.display = 'block';
   document.body.style.overflow = 'hidden'; // Prevent background scrolling
-  
-  console.log('Modal: Modal opened, display set to block');
-  
-  // Check image status after a delay
-  setTimeout(() => {
-    console.log('Modal: Checking image status after 1 second...');
-    console.log('Modal: Image src:', modalImage.src);
-    console.log('Modal: Image complete:', modalImage.complete);
-    console.log('Modal: Image naturalWidth:', modalImage.naturalWidth);
-    console.log('Modal: Image naturalHeight:', modalImage.naturalHeight);
-    
-    const computedStyle = window.getComputedStyle(modalImage);
-    console.log('Modal: Computed display:', computedStyle.display);
-    console.log('Modal: Computed visibility:', computedStyle.visibility);
-    console.log('Modal: Computed opacity:', computedStyle.opacity);
-    console.log('Modal: Computed z-index:', computedStyle.zIndex);
-  }, 1000);
 }
 
 function closeProjectModal() {
