@@ -6,22 +6,6 @@
 
 img {
   image-rendering: auto;
-  animation-play-state: running;
-}
-
-.modal-image-container img {
-  image-rendering: auto;
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
-.modal-image-container img[src*="gif_pukou"],
-.modal-image-container img[src*="gif_shikumen"],
-.modal-image-container img[src*="gif_kuangken"],
-.modal-image-container img[src*="gif_hongshanqiao"],
-.modal-image-container img[src*="gif_jiulonghu"] {
-  image-rendering: auto;
 }
 
 :root {
@@ -501,14 +485,14 @@ body {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(15px);
+  background-color: rgba(0, 0, 0, 0.6);
+  /* backdrop-filter: blur(15px); */
 }
 
 .modal-content {
   position: relative;
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(20px);
+  background-color: rgba(255, 255, 255, 0.95);
+  /* backdrop-filter: blur(20px); */
   border: 1px solid rgba(255, 255, 255, 0.4);
   margin: 5% auto;
   padding: 0;
@@ -594,9 +578,11 @@ body {
   height: auto;
   object-fit: contain;
   border-radius: 8px;
-  display: block;
+  display: block !important;
   max-width: 100%;
   image-rendering: auto;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .modal-info {

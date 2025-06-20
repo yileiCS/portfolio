@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Replica Modal Test</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .project-item {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .project-title {
+            color: white;
+            font-size: 1rem;
+            text-align: center;
+            padding: 1rem;
+        }
+        .project-item:hover .project-overlay {
+            opacity: 1;
+        }
+        .debug-section {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Replica Modal Test - Exact Copy of Main Site Logic</h1>
+        
+        <div id="debug-info" class="debug-section">
+            Debug info will appear here...<br>
+        </div>
+        
+        <div class="project-grid" id="project-grid">
+            <!-- Projects will be loaded here -->
+        </div>
+    </div>
+
+    <!-- Use the exact same modal from main site -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-header">
+                <h2 id="modal-title"></h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image-container">
+                    <img id="modal-image" src="" alt="Project Image">
+                </div>
+                <div class="modal-info">
+                    <p id="modal-description"></p>
+                    <div class="modal-details">
+                        <div class="detail-item">
+                            <strong>Location:</strong> <span id="modal-location"></span>
+                        </div>
+                        <div class="detail-item">
+                            <strong>Year:</strong> <span id="modal-year"></span>
+                        </div>
+                        <div class="detail-item" id="modal-size-container">
+                            <strong>Size:</strong> <span id="modal-size"></span>
+                        </div>
+                        <div class="detail-item">
+                            <strong>Team:</strong> <span id="modal-team"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Use exact same project data as main site
+        const projectsData = {
+            planning: [
+                {
+                    id: 1,
+                    title: "Regeneration Design",
+                    projectName: "REUNION INSTEAD OF FAREWELL",
+                    projectSubtitle: "Preservation and Renewal of Area Around Old Railway Station",
+                    image: "assets/planning/ud_pukou.jpg",
+                    colorImage: "assets/planning/ud_pukou.jpg",
+                    modalImage: "assets/planning/gif_pukou.gif",
+                    description: "Regeneration of abandoned Pukou Railway Station into a public space that transforms farewell into reunion.",
+                    details: {
+                        location: "Nanjing, CHN",
+                        year: "2019",
+                        size: "7 ha",
+                        team: "Team of 2, collaborated with Yang CHEN"
+                    }
+                },
+                {
+                    id: 2,
+                    title: "Urban/Architecture Design",
+                    projectName: "CONNECTION OF HISTORICAL AND MODERN",
+                    projectSubtitle: "Regeneration of Shikumen Lilong buildings",
+                    image: "assets/planning/ud_shikumen1.jpg",
+                    colorImage: "assets/planning/ud_shikumen1.jpg",
+                    modalImage: "assets/planning/gif_shikumen.gif",
+                    description: "Regeneration of century-old Shikumen Lilong buildings in Jingan District, Shanghai.",
+                    details: {
+                        location: "Shanghai, CHN",
+                        year: "2019",
+                        size: "3.3 ha",
+                        team: "Team of 2, collaborated with Ji TONG"
+                    }
+                },
+                {
+                    id: 3,
+                    title: "Landscape Planning",
+                    projectName: "'PLAY' THE QUARRY",
+                    projectSubtitle: "Landscape Planning of the Brownfield Quarries",
+                    image: "assets/planning/lp_kuang1.jpg",
+                    colorImage: "assets/planning/lp_kuang1.jpg",
+                    modalImage: "assets/planning/gif_kuangken.gif",
+                    description: "Revival of an abandoned industrial brownfield on Xishan Island.",
+                    details: {
+                        location: "Jiangsu, CHN",
+                        year: "2018",
+                        size: "95.6 ha",
+                        team: "Team of 2, collaborated with Qian LI"
+                    }
+                }
+            ]
+        };
+
+        const debugInfo = document.getElementById('debug-info');
+        
+        function log(message) {
+            debugInfo.innerHTML += new Date().toLocaleTimeString() + ': ' + message + '<br>';
+            debugInfo.scrollTop = debugInfo.scrollHeight;
+            console.log(message);
+        }
+
+        // Load projects exactly like main site
+        function loadProjects() {
+            const container = document.getElementById('project-grid');
+            const projects = projectsData.planning;
+
+            container.innerHTML = '';
+
+            projects.forEach(project => {
+                const projectElement = createProjectElement(project);
+                container.appendChild(projectElement);
+            });
+            
+            log('Projects loaded: ' + projects.length + ' items');
+        }
+
+        function createProjectElement(project) {
+            const projectDiv = document.createElement('div');
+            projectDiv.className = 'project-item';
+            projectDiv.setAttribute('data-project-id', project.id);
+
+            projectDiv.innerHTML = `
+                <img src="${project.image}" alt="${project.title}" class="project-image">
+                <div class="project-overlay">
+                    <h3 class="project-title">${project.title}</h3>
+                </div>
+            `;
+
+            projectDiv.addEventListener('click', () => {
+                log('Clicked on project: ' + project.title);
+                openProjectModal(project);
+            });
+
+            return projectDiv;
+        }
+
+        // Exact copy of modal function from main site
+        function openProjectModal(project) {
+            const modal = document.getElementById('project-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalImage = document.getElementById('modal-image');
+            const modalDescription = document.getElementById('modal-description');
+            const modalLocation = document.getElementById('modal-location');
+            const modalYear = document.getElementById('modal-year');
+            const modalSize = document.getElementById('modal-size');
+            const modalSizeContainer = document.getElementById('modal-size-container');
+            const modalTeam = document.getElementById('modal-team');
+
+            log('Opening modal for: ' + project.title);
+
+            // Set modal title
+            if (project.projectName) {
+                if (project.projectSubtitle) {
+                    modalTitle.innerHTML = `${project.projectName}<br><span style="font-size: 0.8em; color: var(--dark-gray); font-weight: normal;">${project.projectSubtitle}</span>`;
+                } else {
+                    modalTitle.textContent = project.projectName;
+                }
+            } else {
+                modalTitle.textContent = project.title;
+            }
+
+            modalDescription.textContent = project.description;
+            modalLocation.textContent = project.details.location;
+            modalYear.textContent = project.details.year;
+
+            if (project.details.size) {
+                modalSize.textContent = project.details.size;
+                modalSizeContainer.style.display = 'block';
+            } else {
+                modalSizeContainer.style.display = 'none';
+            }
+
+            modalTeam.textContent = project.details.team;
+
+            // Set image - exact same logic
+            const imageToShow = project.modalImage || project.colorImage || project.image;
+            log('Setting image src to: ' + imageToShow);
+
+            modalImage.onload = function() {
+                log('✓ Modal image loaded successfully');
+                log('  - naturalWidth: ' + this.naturalWidth);
+                log('  - naturalHeight: ' + this.naturalHeight);
+                log('  - complete: ' + this.complete);
+            };
+
+            modalImage.onerror = function() {
+                log('✗ Modal image failed to load!');
+                log('  - src: ' + this.src);
+            };
+
+            modalImage.src = imageToShow;
+            modalImage.alt = project.title;
+
+            // Show modal
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            log('Modal displayed');
+
+            // Check status after delay
+            setTimeout(() => {
+                log('Post-load status check:');
+                log('  - src: ' + modalImage.src);
+                log('  - complete: ' + modalImage.complete);
+                log('  - naturalWidth: ' + modalImage.naturalWidth);
+                log('  - naturalHeight: ' + modalImage.naturalHeight);
+                
+                const computedStyle = window.getComputedStyle(modalImage);
+                log('  - computed display: ' + computedStyle.display);
+                log('  - computed visibility: ' + computedStyle.visibility);
+                log('  - computed opacity: ' + computedStyle.opacity);
+                log('  - offsetWidth: ' + modalImage.offsetWidth);
+                log('  - offsetHeight: ' + modalImage.offsetHeight);
+            }, 1000);
+        }
+
+        function closeProjectModal() {
+            const modal = document.getElementById('project-modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            log('Modal closed');
+        }
+
+        // Initialize modal event listeners (exact copy)
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('project-modal');
+            const closeBtn = document.querySelector('.modal-close');
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeProjectModal);
+            }
+
+            if (modal) {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeProjectModal();
+                    }
+                });
+            }
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeProjectModal();
+                }
+            });
+
+            // Load projects
+            loadProjects();
+            log('Page initialized');
+        });
+    </script>
+</body>
+</html>
