@@ -11,11 +11,9 @@ img {
 
 .modal-image-container img {
   image-rendering: auto;
-  animation-play-state: running !important;
-  animation-iteration-count: infinite !important;
-  backface-visibility: hidden;
-  transform: translateZ(0);
-  will-change: contents;
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 .modal-image-container img[src*="gif_pukou"],
@@ -23,10 +21,7 @@ img {
 .modal-image-container img[src*="gif_kuangken"],
 .modal-image-container img[src*="gif_hongshanqiao"],
 .modal-image-container img[src*="gif_jiulonghu"] {
-  animation-play-state: running !important;
-  animation-iteration-count: infinite !important;
-  will-change: contents;
-  transform: translate3d(0, 0, 0);
+  image-rendering: auto;
 }
 
 :root {
@@ -602,8 +597,6 @@ body {
   display: block;
   max-width: 100%;
   image-rendering: auto;
-  transform: none;
-  animation: none;
 }
 
 .modal-info {
