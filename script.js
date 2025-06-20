@@ -350,77 +350,21 @@ function openProjectModal(project) {
   // Set image - use modalImage if available, otherwise use colorImage
   const imageToShow = project.modalImage || project.colorImage || project.image;
 
-  // Simply set the image source - let the browser handle GIF animation naturally
+  // Clear any existing GIF reload interval
+  if (window.gifLoopInterval) {
+    clearInterval(window.gifLoopInterval);
+    window.gifLoopInterval = null;
+  }
+
+  // Simply set the image source - GIF files now have infinite loop built-in
   modalImage.src = imageToShow;
   modalImage.alt = project.title;
 
-  // Force GIF to loop infinitely by implementing a custom loop mechanism
+  // For GIF files, add a cache-busting parameter to ensure fresh load
   if (imageToShow && imageToShow.toLowerCase().includes('.gif')) {
-    // Clear any existing interval for this modal
-    if (window.gifLoopInterval) {
-      clearInterval(window.gifLoopInterval);
-    }
-
-    // Reset the image source to ensure fresh loading
-    modalImage.src = '';
-
-    // Function to reload gif and ensure continuous looping
-    function reloadGif() {
-      const gifUrl = new URL(imageToShow, window.location.origin);
-      gifUrl.searchParams.set('t', Date.now());
-      modalImage.src = gifUrl.toString();
-    }
-
-    // Initial load
-    reloadGif();
-
-    // Determine reload interval based on project type and file size
-    let reloadInterval = 4000; // Default 4 seconds
-
-    // For planning projects, use shorter interval for better loop continuity
-    if (projectsData.planning.some(p => p.modalImage === imageToShow)) {
-      reloadInterval = 3000; // 3 seconds for planning gifs
-    }
-
-    // Set up infinite loop by reloading gif periodically
-    // This ensures continuous playback even if the gif has limited loop count
-    window.gifLoopInterval = setInterval(() => {
-      // Only continue if modal is still open and image is still visible
-      if (modal.style.display === 'block' && modalImage.parentNode) {
-        reloadGif();
-      } else {
-        // Clean up interval if modal is closed
-        clearInterval(window.gifLoopInterval);
-        window.gifLoopInterval = null;
-      }
-    }, reloadInterval);
-
-    // Ensure gif plays immediately when loaded
-    modalImage.addEventListener('load', function ensureGifPlays() {
-      // Force redraw to trigger gif animation
-      modalImage.style.display = 'none';
-      modalImage.offsetHeight; // Trigger reflow
-      modalImage.style.display = 'block';
-
-      // For planning projects, add additional measures to ensure infinite loop
-      if (projectsData.planning.some(p => p.modalImage === imageToShow)) {
-        // Apply CSS animation properties to ensure loop
-        modalImage.style.animationPlayState = 'running';
-        modalImage.style.animationIterationCount = 'infinite';
-
-        // Force another reload after a short delay to ensure continuous play
-        setTimeout(() => {
-          if (modal.style.display === 'block' && modalImage.parentNode) {
-            const currentSrc = modalImage.src;
-            modalImage.src = '';
-            modalImage.src = currentSrc;
-          }
-        }, 1500);
-      }
-
-      // Clean up the event listener to avoid multiple bindings
-      modalImage.removeEventListener('load', ensureGifPlays);
-    }, { once: true });
+    const gifUrl = new URL(imageToShow, window.location.origin);
+    gifUrl.searchParams.set('t', Date.now());
+    modalImage.src = gifUrl.toString();
   }
 
   // Show modal
@@ -436,11 +380,6 @@ function closeProjectModal() {
   if (window.gifLoopInterval) {
     clearInterval(window.gifLoopInterval);
     window.gifLoopInterval = null;
-  }
-
-  // Clear the image source to stop any ongoing gif animation
-  if (modalImage) {
-    modalImage.src = '';
   }
 
   modal.style.display = 'none';
