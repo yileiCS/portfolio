@@ -45,3 +45,8 @@ yarn-error.log
 
 # 测试文件
 gif-test.html
+direct-gif-test.html
+modal-test.html
+debug-modal.html
+simple-modal-test.html
+replica-modal-test.html
