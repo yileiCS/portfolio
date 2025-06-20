@@ -4,40 +4,28 @@
   box-sizing: border-box;
 }
 
-/* 确保图片和GIF能正常显示和动画 */
 img {
   image-rendering: auto;
-  /* 允许GIF动画 */
   animation-play-state: running;
 }
 
-/* 确保模态框中的GIF能正常循环播放 */
 .modal-image-container img {
-  /* 防止gif被缓存导致停止播放 */
   image-rendering: auto;
-  /* 确保gif重新加载时能触发动画 */
   animation-play-state: running !important;
   animation-iteration-count: infinite !important;
-  /* 防止变换影响gif播放 */
   backface-visibility: hidden;
-  /* 硬件加速确保动画流畅 */
   transform: translateZ(0);
-  /* 强制重绘以确保gif动画 */
   will-change: contents;
 }
 
-/* 专门针对planning页面gif的强制循环样式 */
 .modal-image-container img[src*="gif_pukou"],
 .modal-image-container img[src*="gif_shikumen"],
 .modal-image-container img[src*="gif_kuangken"],
 .modal-image-container img[src*="gif_hongshanqiao"],
 .modal-image-container img[src*="gif_jiulonghu"] {
-  /* 强制这些gif永远播放 */
   animation-play-state: running !important;
   animation-iteration-count: infinite !important;
-  /* 确保不被CSS优化影响 */
   will-change: contents;
-  /* 强制GPU加速 */
   transform: translate3d(0, 0, 0);
 }
 
@@ -341,58 +329,6 @@ body {
   margin-bottom: 2rem;
   opacity: 0.6;
   grid-column: 1 / -1;
-  /* 跨越所有列 */
-}
-
-/* Photography section specific styles */
-#photography .gallery-grid {
-  display: flex;
-  flex-direction: row;
-  gap: 0;
-  margin-top: 8rem;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 2rem 0;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  position: relative;
-  width: 100%;
-  max-width: 720px;
-  margin-left: auto;
-  margin-right: 2rem;
-  /* 右对齐导航栏 */
-}
-
-#photography .gallery-grid::-webkit-scrollbar {
-  display: none;
-}
-
-#photography .project-item {
-  aspect-ratio: 16/9;
-  width: 100vw;
-  max-width: 720px;
-  flex-shrink: 0;
-  position: relative;
-  cursor: pointer;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  scroll-snap-align: center;
-}
-
-#photography .gallery-grid::after {
-  content: 'Scroll right to view more →';
-  position: absolute;
-  right: 1rem;
-  bottom: -3rem;
-  font-size: 0.9rem;
-  color: rgba(139, 115, 85, 0.8);
-  /* 使用主色调，半透明 */
-  font-weight: 400;
-  pointer-events: none;
-  z-index: 10;
-  font-style: italic;
 }
 
 .project-item {
@@ -415,7 +351,6 @@ body {
   object-fit: cover;
   filter: grayscale(100%);
   transition: filter 0s ease, transform var(--transition-slow);
-  /* 改为0s，使颜色变化瞬间完成 */
 }
 
 .project-overlay {
@@ -457,22 +392,18 @@ body {
 /* Photography specific - disable hover effects */
 #photography .project-item:hover {
   transform: none;
-  /* 禁用hover时的向上移动效果 */
 }
 
 #photography .project-item:hover .project-image {
   filter: grayscale(100%);
-  /* 保持灰度效果，不变为彩色 */
 }
 
 #photography .project-item:hover .project-overlay {
   opacity: 0;
-  /* 禁用hover时的覆盖层显示 */
 }
 
 #photography .project-item:hover .project-title {
   transform: translateY(20px);
-  /* 保持标题隐藏状态 */
 }
 
 /* About Section */
@@ -700,7 +631,6 @@ body {
 .detail-item {
   color: var(--dark-gray);
   font-size: 0.8rem;
-  /* 进一步减小详情字体大小从0.85rem到0.8rem */
   line-height: 1.4;
 }
 
@@ -730,7 +660,6 @@ body {
 
   .modal-info {
     flex: none;
-    /* 移除固定宽度 */
     width: 100%;
   }
 
@@ -745,7 +674,6 @@ body {
 
   .modal-header h2 {
     font-size: 1.1rem;
-    /* 进一步减小移动端标题字体大小从1.3rem到1.1rem */
   }
 }
 
@@ -771,13 +699,10 @@ body {
     gap: 1.5rem;
     max-width: 420px;
     margin-right: 2rem;
-    /* 保持右对齐 */
-    /* 平板端：525px * 0.8 = 420px */
   }
 
   #photography .project-item {
     width: 420px;
-    /* 平板端：525px * 0.8 = 420px */
   }
 
   .hero-title {
@@ -854,16 +779,12 @@ body {
     gap: 1.5rem;
     max-width: 360px;
     margin-right: 1rem;
-    /* 手机端保持右对齐，减小边距 */
-    /* 手机端：450px * 0.8 = 360px */
   }
 
   #photography .project-item {
     width: 360px;
-    /* 手机端：450px * 0.8 = 360px */
   }
 
-  /* 响应式hero布局 */
   .hero-container {
     flex-direction: column;
     height: 100vh;
@@ -959,13 +880,10 @@ body {
     gap: 1rem;
     max-width: 336px;
     margin-right: 1rem;
-    /* 小屏幕端保持右对齐 */
-    /* 小屏幕端：420px * 0.8 = 336px */
   }
 
   #photography .project-item {
     width: 336px;
-    /* 小屏幕端：420px * 0.8 = 336px */
   }
 
   .hero-title {
