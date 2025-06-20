@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yilei Xiao</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header class="header">
+    <nav class="nav">
+      <div class="nav-brand">
+        <h1>Yilei's Portfolio</h1>
+      </div>
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="#home" class="nav-link active" data-section="home">HOME</a>
+        </li>
+        <li class="nav-item">
+          <a href="#planning" class="nav-link" data-section="planning">PLANNING & DESIGN</a>
+        </li>
+        <li class="nav-item">
+          <a href="#research" class="nav-link" data-section="research">RESEARCH PROJECTS</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a href="#photography" class="nav-link" data-section="photography">URBAN PHOTOGRAPHY</a>
+        </li> -->
+        <li class="nav-item">
+          <a href="#about" class="nav-link" data-section="about">ABOUT</a>
+        </li>
+      </ul>
+      <div class="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main">
+    <!-- Home Section -->
+    <section id="home" class="section home-section active">
+      <div class="hero-container">
+        <div class="hero-content">
+          <!-- <div class="hero-title-section">
+            <h1 class="hero-title">Urban Studies & Design</h1>
+            <p class="hero-description">Exploring cities through planning and photography</p>
+          </div> -->
+          <div class="hero-quote">
+            <p class="hero-subtitle">"You take delight not in a city's seven or seventy wonders, but in the answer it
+              gives to a question of yours."<br>
+              ― Italo Calvino, Invisible Cities</p>
+          </div>
+        </div>
+        <div class="home-image">
+          <img src="assets/home_pic.jpg" alt="Urban landscape showcase" class="home-img">
+        </div>
+      </div>
+    </section>
+
+    <!-- Planning Design Section -->
+    <section id="planning" class="section gallery-section">
+      <div class="container">
+        <!-- <h2 class="section-title">Planning & Design</h2> -->
+        <div class="gallery-grid" id="planning-gallery">
+          <!-- Projects will be loaded dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Research Projects Section -->
+    <section id="research" class="section gallery-section">
+      <div class="container">
+        <!-- <h2 class="section-title">Research Projects</h2> -->
+        <div class="gallery-grid" id="research-gallery">
+          <!-- Research projects will be loaded dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Photography Section -->
+    <section id="photography" class="section gallery-section">
+      <div class="container">
+        <!-- <h2 class="section-title">Urban Photography</h2> -->
+        <div class="gallery-grid" id="photography-gallery">
+          <!-- Photos will be loaded dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about-section">
+      <div class="container">
+        <!-- <h2 class="section-title">ABOUT</h2> -->
+        <div class="about-content">
+          <div class="about-text">
+            <p>Urban researcher and designer passionate about understanding cities through both analytical planning and
+              visual storytelling. My work combines systematic urban analysis with strategic vision to capture the
+              essence of urban life and development.</p>
+            <p>Currently exploring urban computing and data-driven approaches to sustainable mobility. My research
+              focuses on leveraging computational methods and spatial analysis to address contemporary urban challenges,
+              particularly in developing innovative solutions for sustainable transportation systems and mobility
+              patterns that enhance urban livability.</p>
+          </div>
+
+          <div class="contact-info">
+            <h3 class="contact-title">GET IN TOUCH</h3>
+            <div class="contact-links">
+              <div class="contact-item">
+                <span class="contact-icon">📧</span>
+                <div class="contact-details">
+                  <span class="contact-label">Email</span>
+                  <a href="mailto:yilei.xiao.19@alumni.ucl.ac.uk" class="contact-link">
+                    yilei.xiao.19@alumni.ucl.ac.uk
+                  </a>
+                </div>
+              </div>
+              <div class="contact-item">
+                <span class="contact-icon">💼</span>
+                <div class="contact-details">
+                  <span class="contact-label">LinkedIn</span>
+                  <a href="https://www.linkedin.com/in/yilei-xiao-ucl-bartlett/" target="_blank" class="contact-link">
+                    https://www.linkedin.com/in/yilei-xiao-ucl-bartlett/
+                  </a>
+                </div>
+              </div>
+              <div class="contact-item">
+                <span class="contact-icon">💻</span>
+                <div class="contact-details">
+                  <span class="contact-label">GitHub</span>
+                  <a href="https://github.com/yileiCS" target="_blank" class="contact-link">
+                    https://github.com/yileiCS
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Project Details Modal -->
+  <div id="project-modal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <div class="modal-header">
+        <h2 id="modal-title"></h2>
+      </div>
+      <div class="modal-body">
+        <div class="modal-image-container">
+          <img id="modal-image" src="" alt="Project Image">
+        </div>
+        <div class="modal-info">
+          <p id="modal-description"></p>
+          <div class="modal-details">
+            <div class="detail-item">
+              <strong>Location:</strong> <span id="modal-location"></span>
+            </div>
+            <div class="detail-item">
+              <strong>Year:</strong> <span id="modal-year"></span>
+            </div>
+            <div class="detail-item" id="modal-size-container">
+              <strong>Size:</strong> <span id="modal-size"></span>
+            </div>
+            <div class="detail-item">
+              <strong>Team:</strong> <span id="modal-team"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
