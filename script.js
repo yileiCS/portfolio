@@ -360,13 +360,6 @@ function openProjectModal(project) {
   modalImage.src = imageToShow;
   modalImage.alt = project.title;
 
-  // For GIF files, add a cache-busting parameter to ensure fresh load
-  if (imageToShow && imageToShow.toLowerCase().includes('.gif')) {
-    const gifUrl = new URL(imageToShow, window.location.origin);
-    gifUrl.searchParams.set('t', Date.now());
-    modalImage.src = gifUrl.toString();
-  }
-
   // Show modal
   modal.style.display = 'block';
   document.body.style.overflow = 'hidden'; // Prevent background scrolling
