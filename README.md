@@ -1,6 +1,9 @@
 # Portfolio Website
-This is my personal portfolio website featuring past research projects in urban studies, urban/landscape planning work.
-
+This is my personal portfolio website featuring past research projects in urban studies, urban/landscape planning work.<br>
+Screenshots of webpages:<br>
+<img src="assets/other/WebScreenshot_1.jpg" width="33.33%"><br>
+<img src="assets/other/WebScreenshot_2.jpg" width="33.33%"><br>
+<img src="assets/other/WebScreenshot_3.jpg" width="33.33%"><br>
 
 ## 🚀 Live Demo
 Visit the live website: [Click me!](https://yileics.github.io/portfolio/)
