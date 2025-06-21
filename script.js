@@ -422,24 +422,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Create placeholder images (for development purposes)
 function createPlaceholderImages() {
-  // This function creates placeholder images for development
-  // In production, replace with actual image assets
-
-  console.log('Portfolio website initialized successfully!');
-  console.log('Please replace placeholder images in the assets folder with your actual project images.');
-  console.log('Required image structure:');
-  console.log('assets/');
-  console.log('  hero-image.jpg');
-  console.log('  planning/');
-  console.log('    project1-bw.jpg, project1-color.jpg');
-  console.log('    project2-bw.jpg, project2-color.jpg');
-  console.log('    project3-bw.jpg, project3-color.jpg');
-  console.log('    project4-bw.jpg, project4-color.jpg');
-  console.log('  photography/');
-  console.log('    photo1-bw.jpg, photo1-color.jpg');
-  console.log('    photo2-bw.jpg, photo2-color.jpg');
-  console.log('    photo3-bw.jpg, photo3-color.jpg');
-  console.log('    photo4-bw.jpg, photo4-color.jpg');
+  // This function was used during development
+  // All actual images are now in place
 }
 
 // Smooth scrolling for internal links
