@@ -157,6 +157,36 @@ const projectsData = {
       }
     }
   ],
+
+  itProjects: [
+    {
+      id: 1,
+      title: "Human-Computer Interaction",
+      projectName: "Silent Sprint",
+      projectSubtitle: "An Interactive Design",
+      image: "assets/planning/it_SilentSpring.jpg",
+      colorImage: "assets/planning/it_SilentSpring.jpg",
+      url: "https://github.com/yileiCS/Silent-Spring"
+    },
+    {
+      id: 2,
+      title: "Web Development",
+      projectName: "Loulan Ancient Kingdom",
+      projectSubtitle: "Digital Heritage Webpage",
+      image: "assets/planning/it_Loulan.jpg",
+      colorImage: "assets/planning/it_Loulan.jpg",
+      url: "https://yileics.github.io/Web_Loulan/"
+    },
+    // {
+    //   id: 3,
+    //   title: "GIS Application",
+    //   projectName: "Spatial Analysis Tool",
+    //   projectSubtitle: "Interactive Urban Planning Dashboard",
+    //   image: "assets/other/WebScreenshot_3.jpg",
+    //   colorImage: "assets/other/WebScreenshot_3.jpg",
+    //   url: "https://example.com/gis-dashboard"
+    // }
+  ]
 };
 
 // DOM elements
@@ -245,6 +275,7 @@ function showSection(sectionId) {
 function loadGalleries() {
   loadGallery('planning', 'planning-gallery');
   loadGallery('research', 'research-gallery');
+  loadGallery('itProjects', 'it-projects-gallery');
   loadGallery('photography', 'photography-gallery');
 }
 
@@ -257,12 +288,12 @@ function loadGallery(type, containerId) {
   container.innerHTML = '';
 
   projects.forEach(project => {
-    const projectElement = createProjectElement(project);
+    const projectElement = createProjectElement(project, type);
     container.appendChild(projectElement);
   });
 }
 
-function createProjectElement(project) {
+function createProjectElement(project, type) {
   const projectDiv = document.createElement('div');
   projectDiv.className = 'project-item';
   projectDiv.setAttribute('data-project-id', project.id);
@@ -277,9 +308,15 @@ function createProjectElement(project) {
   // Add hover effect with color transition
   setupHoverEffect(projectDiv, project);
 
-  // Add click handler for modal
+  // Add click handler - different behavior for IT projects
   projectDiv.addEventListener('click', () => {
-    openProjectModal(project);
+    if (type === 'itProjects' && project.url) {
+      // For IT projects, open URL in new tab
+      window.open(project.url, '_blank');
+    } else {
+      // For other projects, open modal
+      openProjectModal(project);
+    }
   });
 
   return projectDiv;
