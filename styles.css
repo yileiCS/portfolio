@@ -409,7 +409,7 @@ body {
   /* 文字改小1号 */
   line-height: 1.7;
   /* 行间距改小一点点 */
-  text-align: justify;
+  text-align: justify !important;
 }
 
 .contact-info {
@@ -480,6 +480,9 @@ body {
   color: var(--primary-color);
   margin-bottom: 1.5rem;
   text-align: left;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--primary-color);
+  opacity: 0.3;
 }
 
 .blog-roll-list {
@@ -490,28 +493,19 @@ body {
 
 .blog-roll-item {
   display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
+  align-items: center;
+  gap: 1rem;
 }
 
-.blog-roll-icon {
-  font-size: 1rem;
-  margin-top: 0.1rem;
-  opacity: 0.7;
+.blog-roll-icon-img {
+  width: 24px;
+  height: 24px;
+  opacity: 0.8;
+  transition: var(--transition-fast);
 }
 
-.blog-roll-details {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.blog-roll-label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--primary-color);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+.blog-roll-icon-img:hover {
+  opacity: 1;
 }
 
 .blog-roll-url {
@@ -901,6 +895,20 @@ body {
     /* 手机端文字与屏幕差不多宽 */
     max-width: 90%;
     margin: 0 auto;
+  }
+
+  /* Blog Roll Mobile Styles */
+  .blog-roll-item {
+    gap: 0.75rem;
+  }
+
+  .blog-roll-icon-img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .blog-roll-url {
+    font-size: 0.85rem;
   }
 }
 
