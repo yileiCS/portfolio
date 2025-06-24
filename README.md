@@ -5,6 +5,7 @@ Screenshots of webpages:<br>
 <img src="assets/other/WebScreenshot_2.jpg" width="33.33%"><br>
 <img src="assets/other/WebScreenshot_3.jpg" width="33.33%"><br>
 
+
 ## 🚀 Live Demo
 Visit the live website: [Click me!](https://yileics.github.io/portfolio/)
 
@@ -20,6 +21,7 @@ Visit the live website: [Click me!](https://yileics.github.io/portfolio/)
 - **Home**: Hero section with introductory quote
 - **Planning & Design**: Urban planning and architectural projects
 - **Research Projects**: Academic research and analysis work
+- **Research Projects**: HCI and Webpage development projects
 - **About**: Personal information and contact details
 
 

@@ -177,15 +177,15 @@ const projectsData = {
       colorImage: "assets/planning/it_Loulan.jpg",
       url: "https://yileics.github.io/Web_Loulan/"
     },
-    // {
-    //   id: 3,
-    //   title: "GIS Application",
-    //   projectName: "Spatial Analysis Tool",
-    //   projectSubtitle: "Interactive Urban Planning Dashboard",
-    //   image: "assets/other/WebScreenshot_3.jpg",
-    //   colorImage: "assets/other/WebScreenshot_3.jpg",
-    //   url: "https://example.com/gis-dashboard"
-    // }
+    {
+      id: 3,
+      title: "Web Development",
+      projectName: "Mitchell's Food Order System",
+      projectSubtitle: "Responsive Web Application",
+      image: "assets/planning/it_Mitchell's.jpg",
+      colorImage: "assets/planning/it_Mitchell's.jpg",
+      url: "https://github.com/yileiCS/Web_FoodOrderSystem"
+    }
   ]
 };
 
